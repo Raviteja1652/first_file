@@ -1,0 +1,25 @@
+def rain(arr):
+    n = len(arr)
+    left = n*[0]
+    right = n*[0]
+    max_left = arr[0]
+    max_right = arr[-1]
+    w = 0
+    for i in range(0, n):
+        if arr[i]>max_left:
+            max_left = arr[i]
+            left[i] = arr[i]
+        else:
+            left[i] = max_left
+    for i in range(n-1, -1, -1):
+        if arr[i]>max_right:
+            max_right = arr[i]
+            right[i] = arr[i]
+        else:
+            right[i] = max_right
+    for i in range(0,n):
+        w = w + min(left[i], right[i]) - arr[i]
+    return w
+
+a = [5,2,0,3,2,5]
+print(rain(a))
